@@ -66,7 +66,7 @@ class ListArray: public List<T>{
 			//verificar si está en el rango
 			if(pos<0||pos>n){
 			//excepcion
-				trhow std::out_of_range("Posición fuera de rango.");	
+				throw std::out_of_range("Posición fuera de rango.");	
 			}
 			else{	//dentro del rango
 				T remove= arr[pos];	//guardar valor que voy a eliminar
@@ -76,13 +76,13 @@ class ListArray: public List<T>{
 				//actualizar tamaño del array
 				n--;
 				//devolver valor eliminado
-				return removed;
+				return remove;
 			}
 		}
 
 		T get(int pos)const override{
 			//verificar si está en el rango permitido
-			if(pos<0|1pos>n){	//fuera del rango
+			if(pos<0|pos>n){	//fuera del rango
 				throw std:: out_of_range("Posición fuera de rango.");
 			}
 			else{
@@ -107,7 +107,7 @@ class ListArray: public List<T>{
 		
 		bool empty() const override{
 			//devolver true si la lista está vacía
-			return==0;
+			return n==0;
 		}
 
 		int size()const override{
@@ -128,13 +128,15 @@ class ListArray: public List<T>{
 		}
 
 		//sobrecargar el operador <<
-		friend std::ofstream& operator<<(std::ostream& out, const ListArray<T>& list){
+		friend std::ostream& operator<<(std::ostream& out, const ListArray<T>& list){
 			for(int i=0; i<list.n; i++){
-				out<<list.arr[i];
+				out<<list.arr[i];	//imprime elemento actual
 				if(i<list.n-1){
-					out<< ", ";
+					out<< ", ";	//si no es el útlimo-> espacio
 				}
 			}
 			return out;
 		}
 };
+
+#endif
