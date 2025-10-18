@@ -35,7 +35,7 @@ class ListArray: public List<T>{
 		
 		//métodos de List.h
 
-		void insert(int pos, T e) override{
+		void insert(int pos,const T& e) override{
 			//ver si está dentro del rango
 			if(pos<0||pos>n){	//está fuera-> excepción
 				throw std::out_of_range("Posición fuera de rango.");
@@ -78,9 +78,9 @@ class ListArray: public List<T>{
 				//devolver valor eliminado
 				return remove;
 			}
-		}
+		} 
 
-		T get(int pos)const override{
+		T get(int pos)override{
 			//verificar si está en el rango permitido
 			if(pos<0|pos>n){	//fuera del rango
 				throw std:: out_of_range("Posición fuera de rango.");
@@ -90,22 +90,19 @@ class ListArray: public List<T>{
 			}
 		}
 
-		int search(T e)const override{
+		int search(const T& e)const override{
 		//buscar elemento e y devolver su posición
 		for(int i=0; i<n; i++){
 			if(arr[i]==e){
 			//devolver posición
 				return i;
 				}
-			else{
-			//no se ha encontrado
-				return -1;
 			}
-			}
+			return -1;
 		}
 
 		
-		bool empty() const override{
+		bool empty()const override{
 			//devolver true si la lista está vacía
 			return n==0;
 		}
