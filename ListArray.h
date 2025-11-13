@@ -19,14 +19,15 @@ class ListArray: public List<T>{
 		}
 
 	public:
-		ListArray(){
+//método constructor
+		ListArray(){	//reserva memoria dinámica para crear ...
 			arr=new T[MIN_SIZE];	//nuevo array elementos tipo T
 			//inicializar atributos
 			n=0;		
 			max=MIN_SIZE;
 		}		
-
-		~ListArray(){
+//método destructor
+		~ListArray(){	//libera memoria dinámica reservada
 			//liberar memoria dinámica
 			delete [] arr;
 		}
@@ -35,7 +36,7 @@ class ListArray: public List<T>{
 		
 		//métodos de List.h
 
-		void insert(int pos,const T& e) override{
+		void insert(int pos,const T& e) override{	//inserta elemento e en la posicion pos
 			//ver si está dentro del rango
 			if(pos<0||pos>n){	//está fuera-> excepción
 				throw std::out_of_range("Posición fuera de rango.");
@@ -62,7 +63,7 @@ class ListArray: public List<T>{
 			insert(0,e);
 		}
 
-		T remove(int pos)override{
+		T remove(int pos)override{	//elimina y devuelve el elemento situado en la posicion pos
 			//verificar si está en el rango
 			if(pos<0||pos>n){
 			//excepcion
@@ -80,17 +81,17 @@ class ListArray: public List<T>{
 			}
 		} 
 
-		T get(int pos)override{
+		T get(int pos)override{		//devuelve el elemento situado en la posicion pos
 			//verificar si está en el rango permitido
 			if(pos<0|pos>n){	//fuera del rango
 				throw std:: out_of_range("Posición fuera de rango.");
 			}
 			else{
-				return arr[pos];
+				return arr[pos];	//devuelve el valor 
 			}
 		}
 
-		int search(const T& e)const override{
+		int search(const T& e)const override{	//devuelve la pos donde se encuentre el 1º e o -1 si no se encuentra
 		//buscar elemento e y devolver su posición
 		for(int i=0; i<n; i++){
 			if(arr[i]==e){
@@ -102,29 +103,30 @@ class ListArray: public List<T>{
 		}
 
 		
-		bool empty()const override{
+		bool empty()const override{		//indica si la lista está vacía
 			//devolver true si la lista está vacía
 			return n==0;
 		}
 
-		int size()const override{
+		int size()const override{		//devuelve n (nº elementos de la lista)
 			//devolver número de elementos de la lista
 			return n;
 		}
 
-		//sobrecargar el operador []
-		T operator[](int pos)const{
+	//sobrecargar el operador []
+		T operator[](int pos)const{	//devuelve el elemento que esté en pos
 			//verificar rango
 			if(pos<0||pos>n){
 				//excepción
 				throw std::out_of_range("Posición fiera d erango.");
 			}
 			else{
-				return arr[pos];
+				return arr[pos];	//devuelve el valor
 			}
 		}
 
-		//sobrecargar el operador <<
+	//sobrecargar el operador <<
+		//imprime una instancia de ListArray<T> por pantalla
 		friend std::ostream& operator<<(std::ostream& out, const ListArray<T>& list){
 			for(int i=0; i<list.n; i++){
 				out<<list.arr[i];	//imprime elemento actual
