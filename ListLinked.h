@@ -13,9 +13,10 @@ private:
     int n;	//numero de leementos en la lista
 
 public:
-    ListLinked() : first(nullptr), n(0) {	
+//método constructor
+    ListLinked() : first(nullptr), n(0) {	//inicializar los 2 atributos 
     }	//lista vacía
-
+//método destructor
     ~ListLinked() {	//liberar memoria
         while (first != nullptr) {	//mientras haya nodos
             Node<T>* aux = first->next;	//guardar siguiente nodo
@@ -26,7 +27,7 @@ public:
     }
 
     //sobrecarga del operador []
-    T operator[](int pos) {
+    T operator[](int pos) {	//devuelve el elemento situado en pos
         if (pos < 0 || pos >= n)
             throw std::out_of_range("Posición inválida!");
         Node<T>* aux = first;
@@ -35,8 +36,9 @@ public:
         return aux->data;	//devuelve el dato del noto de esa posición
     }
 
-    
+    //sobrecarga el operador <<
     friend std::ostream& operator<<(std::ostream& out, const ListLinked<T>& list) {
+	//imprime una instancia de Listinked<T> por pantalla
         Node<T>* aux = list.first;
         out << "List => [";
         //recorrer la lista
