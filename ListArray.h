@@ -128,7 +128,7 @@ class ListArray: public List<T>{
 	//sobrecargar el operador <<
 		//imprime una instancia de ListArray<T> por pantalla
 		friend std::ostream& operator<<(std::ostream& out, const ListArray<T>& list){
-			for(int i=0; i<list.n; i++){
+			for(int i=0; i<list.n; i++){	//list.n para imrpimir solo los valores de la lista válidos (los vacíos no)
 				out<<list.arr[i];	//imprime elemento actual
 				if(i<list.n-1){
 					out<< ", ";	//si no es el útlimo-> espacio
